@@ -6,6 +6,7 @@ namespace TestProject1.POM
     {
 
         private readonly IPage Page;
+
         public LoginPage(IPage page)
         {
             Page = page;
@@ -13,10 +14,10 @@ namespace TestProject1.POM
 
         public async Task Login()
         {
+            Page.GotoAsync("http://acs-pwcmanutl01:8082/Account/Login?ReturnUrl=%2F");
             var username = Page.Locator("input[autocomplete='username']");
             var password = Page.Locator("input[autocomplete='current-password']");
             var loginButton = Page.Locator("button:has-text(\"Login\")");
-            Page.GotoAsync("http://acs-pwcmanutl01:8082/Account/Login?ReturnUrl=%2F");
             await Task.Delay(5000);
             await username.FillAsync("Jabad@archgroup.com");
             await Task.Delay(1000);
