@@ -1,4 +1,5 @@
 ﻿using Microsoft.Playwright;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TestProject1.POM
 {
@@ -10,12 +11,13 @@ namespace TestProject1.POM
         //Page Objects
         private ILocator addTimesheetButton => Page.Locator("button[class='btn btn-primary']");
         private ILocator workshiftList => Page.Locator("div[class='mud-input mud-input-text mud-input-text-with-label mud-input-adorned-end mud-input-underline mud-shrink mud-typography-subtitle1 mud-select-input']");
-        //private ILocator workshiftStart => Page.Locator("label:has-text(\"Start Date\")");
-        //private ILocator workshiftEnd => Page.Locator("label:has-text(\"End Date\")");
+        private ILocator workshiftStart => Page.Locator("label.mud-input-label.mud-input-label-animated.mud-input-label-text.mud-input-label-inputcontrol:has-text(\"Start Date\")");
+        private ILocator workshiftEnd => Page.Locator("label.mud-input-label.mud-input-label-animated.mud-input-label-text.mud-input-label-inputcontrol:has-text(\"End Date\")");
+
         //private ILocator dateFrom => Page.Locator("input[class='mud-input-slot mud-input-root mud-input-root-text mud-input-root-adorned-end']");
         //private ILocator dateTo => Page.Locator("input[id='mud-input-slot mud-input-root mud-input-root-text mud-input-root-adorned-end']");
         //private ILocator searchButton => Page.Locator("button[class='mud-button-root mud-button mud-button-filled mud-button-filled-info mud-button-filled-size-small mud-ripple pa-2']");
-        //private ILocator timesheetBody => Page.Locator("tbody[class='mud-table-body']");
+        private ILocator timesheetBody => Page.Locator("tbody[class='mud-table-body']");
 
         private ILocator buttonGenerate => Page.Locator("p:has-text(\"GENERATE\")");
         private ILocator buttonCancel => Page.Locator("span:has-text(\"Cancel\")");
@@ -49,23 +51,6 @@ namespace TestProject1.POM
             await option.ClickAsync();
         }
 
-        public async Task clickGenerateWorkshiftAsync()
-        {
-            await buttonGenerate.ClickAsync();
-        }
-
-        public async Task assertClockInButtonAsync()
-        {
-            bool isVisible = await buttonClockIn.IsVisibleAsync();
-            if (!isVisible)
-                throw new Exception("Shift not created successfully");
-        }
-        public async Task clickClockInAsync()
-        {
-            await buttonClockIn.ClickAsync();
-        }
-
-        /*
         public async Task selectWorkshiftDateAsync()
         {
             string startDate = DateTime.Now.ToString("yyyy-MM-dd");
@@ -73,24 +58,54 @@ namespace TestProject1.POM
             await workshiftStart.ClickAsync(); 
             await workshiftStart.FillAsync(startDate);
             await workshiftEnd.FillAsync(endDate);
-        }
+         }
 
-        public async Task searchTimesheet()
-        {
-            string fromDate = DateTime.Now.ToString("yyyy-MM-dd");
-            string toDate = DateTime.Now.ToString("yyyy-MM-dd");
+        public async Task clickGenerateWorkshiftAsync()
+      {
+          await buttonGenerate.ClickAsync();
+      }
 
-            await dateFrom.FillAsync(fromDate);
-            await dateTo.FillAsync(toDate);
-            await Task.Delay(500);
-            await searchButton.ClickAsync();
-        }
-        
-        public async Task<int> checkTimesheetRecordsAsync(int count)
-        {
-            int rowCount = await timesheetBody.Locator("tr").CountAsync();
+      public async Task assertClockInButtonAsync()
+      {
+          bool isVisible = await buttonClockIn.IsVisibleAsync();
+          if (!isVisible)
+              throw new Exception("Shift not created successfully");
+      }
+      public async Task clickClockInAsync()
+      {
+          await buttonClockIn.ClickAsync();
+      }
+
+
+      /*
+      public async Task searchTimesheet()
+      {
+          string fromDate = DateTime.Now.ToString("yyyy-MM-dd");
+          string toDate = DateTime.Now.ToString("yyyy-MM-dd");
+
+          await dateFrom.FillAsync(fromDate);
+          await dateTo.FillAsync(toDate);
+          await Task.Delay(500);
+          await searchButton.ClickAsync();
+      }
+      */
+
+      public async Task<int> checkExistingTimesheetAsync(int rowCount)
+      {
+          rowCount = await timesheetBody.Locator("tr").CountAsync();
+          Console.WriteLine(rowCount);
             return rowCount;
+
+            //if (rowCount > 0)
+            //{
+            //    var tsDateIn = await Page.Locator("table tr:nth-child(1) td:nth-child(3)").InnerTextAsync();
+            //    var tsDateOut = await Page.Locator("table tr:nth-child(1) td:nth-child(4)").InnerTextAsync();
+            //    Console.WriteLine(tsDateIn);
+            //    Console.WriteLine(tsDateOut);
+
+            //}
+
         }
-        */
+      
     }
 }

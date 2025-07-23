@@ -21,8 +21,8 @@ namespace TestProject1.POM
         public async Task LoginAsync()
         {
             await Page.GotoAsync("http://acs-pwcmanutl01:8082/Account/Login?ReturnUrl=%2F");
-            await username.FillAsync("fluna@archgroup.com");
-            await password.FillAsync("FLuna_10801");
+            await username.FillAsync("smarino@Archgroup.com");
+            await password.FillAsync("SMarino_16272");
             await Task.Delay(500);
             await loginButton.ClickAsync();
             await Task.Delay(5000);
