@@ -1,0 +1,3 @@
+Username,Password,Workstream,Transaction,Stage,Description,Type,Status,Quantity,SLA,OT
+fluna@archgroup.com,FLuna_10801,CAS_Claims Administration,Claim,Queried,,,,1,true,false
+fluna@archgroup.com,FLuna_10801,COS_Claims Operations,,,Allocation,Payments,Queried,1,true,false

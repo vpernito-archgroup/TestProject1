@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProject1
+namespace ART.Test
 {
     public class BaseTest : PageTest
     {

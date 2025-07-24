@@ -1,7 +1,7 @@
 ﻿using Microsoft.Playwright;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace TestProject1.POM
+namespace ART.Pages
 {
     public class Timesheet
     {
@@ -93,19 +93,8 @@ namespace TestProject1.POM
       public async Task<int> checkExistingTimesheetAsync(int rowCount)
       {
           rowCount = await timesheetBody.Locator("tr").CountAsync();
-          Console.WriteLine(rowCount);
             return rowCount;
-
-            //if (rowCount > 0)
-            //{
-            //    var tsDateIn = await Page.Locator("table tr:nth-child(1) td:nth-child(3)").InnerTextAsync();
-            //    var tsDateOut = await Page.Locator("table tr:nth-child(1) td:nth-child(4)").InnerTextAsync();
-            //    Console.WriteLine(tsDateIn);
-            //    Console.WriteLine(tsDateOut);
-
-            //}
-
-        }
+       }
       
     }
 }

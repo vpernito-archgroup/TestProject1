@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TestProject1.POM\TestProject1.POM.csproj" />
+    <ProjectReference Include="..\TestProject1.POM\ART.Pages.csproj" />
+	<ProjectReference Include="..\TestData\ART.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
