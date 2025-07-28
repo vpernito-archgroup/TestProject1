@@ -29,7 +29,7 @@ namespace ART.Test
         {
             var Login = new LoginPage(Page);
             await Login.LoginAsync(uname, pass);
-            await Task.Delay(1000);
+            await Task.Delay(5000);
             await Login.AssertLoginAsync();
             //Assert.Pass();
         }
@@ -49,12 +49,9 @@ namespace ART.Test
             //await Timesheet.selectWorkshiftDateAsync();
             await Timesheet.clickGenerateWorkshiftAsync();
 
-            await Task.Delay(1000);
+            await Task.Delay(5000);
             await Timesheet.assertClockInButtonAsync();
             await Timesheet.clickClockInAsync();
-
-            await Task.Delay(1000);
-            await LogActivity.assertRegisterActivityAsync();
 
             //Assert.Pass();
         }
@@ -66,28 +63,43 @@ namespace ART.Test
             var LogActivity = new LogActivity(Page);
 
             await LogActivity.clickAddProdAsync();
-            await Task.Delay(1000);
+            await Task.Delay(5000);
             await LogActivity.assertProdActivityWindowAsync();
-            await Task.Delay(500);
+            await Task.Delay(1000);
             await LogActivity.selectWorkstreamAsync(wstream);
 
             if(wstream == "CAS_Claims Administration")
             {
-                await Task.Delay(5000);
-                await LogActivity.selectTransactionAsync(trans);
-                await LogActivity.selectStageAsync(stg);
+                await Task.Delay(1000);
+                if(trans != "")
+                    await LogActivity.selectTransactionAsync(trans);
+                await Task.Delay(500);
+                if (stg != "")
+                    await LogActivity.selectStageAsync(stg);
+                await Task.Delay(500);
+                if (qty != "")
                 await LogActivity.inputQuantityAsync(qty);
+                await Task.Delay(500);
                 await LogActivity.optionWithinSLAAsync(sla);
+                await Task.Delay(500);
                 await LogActivity.optionIsOvertimeAsync(ot);
             }
             else if (wstream == "COS_Claims Operations" || wstream == "CRC_Claims Reporting and Controls" || wstream == "CBS_Claims Bordereaux Services")
             {
-                await Task.Delay(5000);
-                await LogActivity.selectDescriptionAsync(desc);
-                await LogActivity.selectTypeAsync(type);
-                await LogActivity.selectStatusAsync(stat);
+                await Task.Delay(1000);
+                if (desc != "")
+                    await LogActivity.selectDescriptionAsync(desc);
+                await Task.Delay(500);
+                if (type != "")
+                    await LogActivity.selectTypeAsync(type);
+                await Task.Delay(500);
+                if (stat != "")
+                    await LogActivity.selectStatusAsync(stat);
+                await Task.Delay(500);
                 await LogActivity.inputQuantityAsync(qty);
             }
+            await Task.Delay(1000);
+            await LogActivity.inputNotesAsync();
             await LogActivity.clickSubmitAsync();
             await Task.Delay(5000);
 
@@ -109,7 +121,7 @@ namespace ART.Test
             await Task.Delay(1000);
             int recCount = await Timesheet.checkExistingTimesheetAsync(rec);
 
-            await Task.Delay(500);
+            await Task.Delay(1000);
             if (recCount > 0)
             {
                 var tsDateIn = await Page.Locator("table tr:nth-child(1) td:nth-child(3)").InnerTextAsync();
@@ -139,6 +151,8 @@ namespace ART.Test
                 {
                     await Task.Delay(1000);
                     await AddTimesheet();
+                    await Task.Delay(5000);
+                    await LogActivity.assertRegisterActivityAsync();
                     await LogActivity.assertWorkshiftClockInAsync();
                     await Task.Delay(5000);
                     await AddProductionActivity(data.Workstream, data.Transaction, data.Stage, data.Description, data.Type, data.Status, data.Quantity, data.SLA, data.OT);
@@ -148,12 +162,14 @@ namespace ART.Test
             {
                 await Task.Delay(1000);
                 await AddTimesheet();
+                await Task.Delay(5000);
+                await LogActivity.assertRegisterActivityAsync();
                 await LogActivity.assertWorkshiftClockInAsync();
                 await Task.Delay(5000);
                 await AddProductionActivity(data.Workstream, data.Transaction, data.Stage, data.Description, data.Type, data.Status, data.Quantity, data.SLA, data.OT);
             }
 
-            await Task.Delay(5000);
+            await Task.Delay(3000);
             Assert.Pass();
         }
         

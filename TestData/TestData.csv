@@ -1,3 +1,17 @@
 Username,Password,Workstream,Transaction,Stage,Description,Type,Status,Quantity,SLA,OT
 fluna@archgroup.com,FLuna_10801,CAS_Claims Administration,Claim,Queried,,,,1,true,false
-fluna@archgroup.com,FLuna_10801,COS_Claims Operations,,,Allocation,Payments,Queried,1,true,false
+lcorpuz@archgroup.com,LCorpuz_16265,COS_Claims Operations,,,Allocation,Payments,Queried,1,true,false
+jdelacerna@archgroup.com,JDelacerna_10850,CRC_Claims Reporting and Controls,,,Report Generation,Daily,Rework - Completed,1,true,false
+spajanustan@archgroup.com,SPajanustan_13890,CBS_Claims Bordereaux Services,,,Payment Processing,,Waiting for Approval,1,true,false
+ecapio@archgroup.com,ECapio_10849,CAS_Claims Administration,Claim,Queried,,,,2,false,true
+jquijada@archgroup.com,JQuijada_11232,COS_Claims Operations,,,Allocation,Payments,Queried,2,true,false
+jabad@archgroup.com,JAbad_60000,CRC_Claims Reporting and Controls,,,Report Generation,Daily,Rework - Completed,2,true,false
+MJasmin@archgroup.com,MJasmin_10425,CBS_Claims Bordereaux Services,,,Payment Processing,,Waiting for Approval,2,true,false
+fluna@archgroup.com,FLuna_10801,CAS_Claims Administration,Claim,Queried,,,,3,true,true
+lcorpuz@archgroup.com,LCorpuz_16265,COS_Claims Operations,,,Allocation,Payments,Queried,3,true,false
+jdelacerna@archgroup.com,JDelacerna_10850,CRC_Claims Reporting and Controls,,,Report Generation,Daily,Rework - Completed,3,true,false
+spajanustan@archgroup.com,SPajanustan_13890,CBS_Claims Bordereaux Services,,,Payment Processing,,Waiting for Approval,3,true,false
+ecapio@archgroup.com,ECapio_10849,CAS_Claims Administration,Claim,Queried,,,,4,false,false
+jquijada@archgroup.com,JQuijada_11232,COS_Claims Operations,,,Allocation,Payments,Queried,4,true,false
+jabad@archgroup.com,JAbad_60000,CRC_Claims Reporting and Controls,,,Report Generation,Daily,Rework - Completed,4,true,false
+MJasmin@archgroup.com,MJasmin_10425,CBS_Claims Bordereaux Services,,,Payment Processing,,Waiting for Approval,4,true,false

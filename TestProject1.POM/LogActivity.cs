@@ -25,6 +25,8 @@ namespace ART.Pages
         private ILocator inputQuantity => Page.GetByRole(AriaRole.Textbox, new() { Name = "Quantity*" });
         private ILocator checkboxWithinSLA => Page.GetByRole(AriaRole.Checkbox, new() { Name = "Within SLA?" });
         private ILocator checkboxIsOvertime => Page.GetByRole(AriaRole.Checkbox, new() { Name = "Is Overtime?" });
+        private ILocator inputNotes => Page.GetByRole(AriaRole.Textbox, new() { Name = "Notes" });
+        private ILocator formLabel => Page.Locator("h6.mud-typography.mud-typography-h6:has-text(\"Register Production Activity\")");
         private ILocator buttonSubmit => Page.Locator("p:has-text(\"Submit\")");
 
         //Assert Objects
@@ -86,6 +88,7 @@ namespace ART.Pages
                 await option.ClickAsync();
             }
         }
+
         public async Task selectStageAsync(string stage)
         {
             bool isVisible = await listStage.IsVisibleAsync();
@@ -98,6 +101,7 @@ namespace ART.Pages
                 await option.ClickAsync();
             }
         }
+
         public async Task selectDescriptionAsync(string desc)
         {
             bool isVisible = await listDescription.IsVisibleAsync();
@@ -109,8 +113,8 @@ namespace ART.Pages
                 await option.WaitForAsync(new LocatorWaitForOptions { State = WaitForSelectorState.Visible });
                 await option.ClickAsync();
             }
-
         }
+
         public async Task selectTypeAsync(string type)
         {
             bool isVisible = await listType.IsVisibleAsync();
@@ -123,6 +127,7 @@ namespace ART.Pages
                 await option.ClickAsync();
             }
         }
+
         public async Task selectStatusAsync(string status)
         {
             bool isVisible = await listStatus.IsVisibleAsync();
@@ -130,17 +135,15 @@ namespace ART.Pages
             {
                 await listStatus.ClickAsync();
                 var option = Page.Locator($"p:text-is(\"{status}\")");
-                //await option.ScrollIntoViewIfNeededAsync();
+                await option.ScrollIntoViewIfNeededAsync();
                 await option.WaitForAsync(new LocatorWaitForOptions { State = WaitForSelectorState.Visible });
                 await option.ClickAsync();
             }
-
         }
         public async Task inputQuantityAsync(string qty)
         {
             await inputQuantity.FillAsync(qty);
         }
-
         public async Task optionWithinSLAAsync(bool sla)
         {
             bool isVisible = await checkboxWithinSLA.IsVisibleAsync();
@@ -153,6 +156,11 @@ namespace ART.Pages
             bool isVisible = await checkboxWithinSLA.IsVisibleAsync();
             if (isVisible)
                 await checkboxIsOvertime.SetCheckedAsync(ot);
+        }
+
+        public async Task inputNotesAsync()
+        {
+            await inputNotes.FillAsync("Log Production Activity Automation");
         }
 
         public async Task clickSubmitAsync()
