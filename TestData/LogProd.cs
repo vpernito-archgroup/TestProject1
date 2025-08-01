@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ART.Data
 {
-    public class TestData
+    public class LogProd
     {
         public string Username { get; set; }
         public string Password { get; set; }
