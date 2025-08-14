@@ -21,10 +21,12 @@ namespace ART.Pages
 
         private ILocator buttonGenerate => Page.Locator("p:has-text(\"GENERATE\")");
         private ILocator buttonCancel => Page.Locator("span:has-text(\"Cancel\")");
-        private ILocator buttonClockIn => Page.Locator("span:has-text(\"Clock In\")");
+        private ILocator buttonClockIn => Page.Locator("button[class='mud-button-root mud-button mud-button-filled mud-button-filled-success mud-button-filled-size-small mud-ripple']");
+        private ILocator buttonProceedClockIn => Page.Locator("span:has-text(\"Proceed\")");
 
         //Assert Objects
         private ILocator headerAddShift => Page.Locator("h6:has-text(\"Add Shift\")");
+        private ILocator textClockIn => Page.Locator("h4:has-text(\"Are you sure you want to Clock In?\")");
 
 
         public Timesheet(IPage page) => Page = page;
@@ -61,40 +63,38 @@ namespace ART.Pages
          }
 
         public async Task clickGenerateWorkshiftAsync()
-      {
+        {
           await buttonGenerate.ClickAsync();
-      }
+        }
 
-      public async Task assertClockInButtonAsync()
-      {
+        public async Task assertClockInButtonAsync()
+        {
           bool isVisible = await buttonClockIn.IsVisibleAsync();
           if (!isVisible)
               throw new Exception("Shift not created successfully");
-      }
-      public async Task clickClockInAsync()
-      {
+        }
+        public async Task clickClockInAsync()
+        {
           await buttonClockIn.ClickAsync();
-      }
+        }
 
+        public async Task assertClockInWindowAsync()
+        {
+          bool isVisible = await textClockIn.IsVisibleAsync();
+            if (!isVisible)
+                throw new Exception("Clock In unsuccessful!");
+        }
 
-      /*
-      public async Task searchTimesheet()
-      {
-          string fromDate = DateTime.Now.ToString("yyyy-MM-dd");
-          string toDate = DateTime.Now.ToString("yyyy-MM-dd");
+        public async Task clickProceedClockInAsync()
+        {
+            await buttonProceedClockIn.ClickAsync();
+        }
 
-          await dateFrom.FillAsync(fromDate);
-          await dateTo.FillAsync(toDate);
-          await Task.Delay(500);
-          await searchButton.ClickAsync();
-      }
-      */
-
-      public async Task<int> checkExistingTimesheetAsync(int rowCount)
-      {
+        public async Task<int> checkExistingTimesheetAsync(int rowCount)
+        {
           rowCount = await timesheetBody.Locator("tr").CountAsync();
             return rowCount;
-       }
+        }
       
     }
 }

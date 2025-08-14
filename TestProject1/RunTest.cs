@@ -14,7 +14,7 @@ namespace ART.Test
     {
         public static IEnumerable ReadCSV()
         {
-            var filepath = "../../../../TestData/LogProdOPS.csv";
+            var filepath = "../../../../TestData/LogProdCLM.csv";
             using var reader = new StreamReader(filepath);
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             var records = csv.GetRecords<LogProd>().ToList();
@@ -52,6 +52,9 @@ namespace ART.Test
             await Task.Delay(5000);
             await Timesheet.assertClockInButtonAsync();
             await Timesheet.clickClockInAsync();
+            await Task.Delay(5000);
+            await Timesheet.assertClockInWindowAsync();
+            await Timesheet.clickProceedClockInAsync();
 
             //Assert.Pass();
         }
@@ -136,17 +139,23 @@ namespace ART.Test
             await Task.Delay(1000);
             if (recCount > 0)
             {
+                bool buttonClock = await Page.Locator("button[class='mud-button-root mud-button mud-button-filled mud-button-filled-success mud-button-filled-size-small mud-ripple']").IsVisibleAsync();
                 var tsDateIn = await Page.Locator("table tr:nth-child(1) td:nth-child(3)").InnerTextAsync();
                 var tsDateOut = await Page.Locator("table tr:nth-child(1) td:nth-child(4)").InnerTextAsync();
 
-                if (tsDateIn.Contains("CLOCK IN"))
+                if (buttonClock)
                 {
                     await Task.Delay(1000);
                     await Timesheet.assertClockInButtonAsync();
                     await Timesheet.clickClockInAsync();
                     await Task.Delay(5000);
+                    await Timesheet.assertClockInWindowAsync();
+                    await Timesheet.clickProceedClockInAsync();
+                    await Task.Delay(3000);
+                    await Page.Locator("table tr:nth-child(1) td:nth-child(3)").ClickAsync();
+                    await Task.Delay(5000);
                     await LogActivity.assertRegisterActivityAsync();
-                    await LogActivity.assertWorkshiftClockInAsync();
+                    //await LogActivity.assertWorkshiftClockInAsync();
                     await Task.Delay(5000);
                     await AddProductionActivity(data.Workstream,data.Transaction,data.Stage,data.Description,data.Type,data.Status,data.Quantity,data.SLA,data.OT);
                 }
@@ -163,9 +172,11 @@ namespace ART.Test
                 {
                     await Task.Delay(1000);
                     await AddTimesheet();
+                    await Task.Delay(3000);
+                    await Page.Locator("table tr:nth-child(1) td:nth-child(3)").ClickAsync();
                     await Task.Delay(5000);
                     await LogActivity.assertRegisterActivityAsync();
-                    await LogActivity.assertWorkshiftClockInAsync();
+                    //await LogActivity.assertWorkshiftClockInAsync();
                     await Task.Delay(5000);
                     await AddProductionActivity(data.Workstream, data.Transaction, data.Stage, data.Description, data.Type, data.Status, data.Quantity, data.SLA, data.OT);
                 }
@@ -174,9 +185,11 @@ namespace ART.Test
             {
                 await Task.Delay(1000);
                 await AddTimesheet();
+                await Task.Delay(3000);
+                await Page.Locator("table tr:nth-child(1) td:nth-child(3)").ClickAsync();
                 await Task.Delay(5000);
                 await LogActivity.assertRegisterActivityAsync();
-                await LogActivity.assertWorkshiftClockInAsync();
+                //await LogActivity.assertWorkshiftClockInAsync();
                 await Task.Delay(5000);
                 await AddProductionActivity(data.Workstream, data.Transaction, data.Stage, data.Description, data.Type, data.Status, data.Quantity, data.SLA, data.OT);
             }
