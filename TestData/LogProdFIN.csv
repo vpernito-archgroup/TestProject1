@@ -1,0 +1,10 @@
+Username,Password,Workstream,Transaction,Stage,Description,Type,Status,Quantity,SLA,OT
+stanghal@archgroup.com,STanghal_10891,Cash Management,Cash Allocation,Completed,,,,1,true,false
+mestores@archgroup.com,MEstores_10895,Credit Control,CreditSee update,Completed,,,,1,true,false
+MPinto@archgroup.com,MPinto_12520,Account Payable,AP Reconciliation,Completed,,,,1,true,false
+kamadar@archgroup.com,KAmadar_19657,Bank Reconciliation,Final Reconciliation,Completed,,,,1,true,false
+JMacanip@archgroup.com,JMacanip_11877,Treasury,GTreasury,Completed,,,,1,true,false
+RTrijo@archgroup.com,RTrijo_60174,Claims Payable,Payment Explode,Completed,,,,1,true,false
+dgabriel@archgroup.com,DGabriel_17970,Ceded Re Credit Control,Cash Allocation,Completed,,,,1,true,false
+jcolasito@Archgroup.com,JColasito_15006,Ceded Re Operations,Manual Posting Entry,Completed,,,,1,true,false
+gsapasap@archgroup.com,GSapasap_15601,Australia Ops,Accounts Receivable,Completed,,,,1,true,false

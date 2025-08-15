@@ -14,7 +14,7 @@ namespace ART.Test
     {
         public static IEnumerable ReadCSV()
         {
-            var filepath = "../../../../TestData/LogProdCLM.csv";
+            var filepath = "../../../../TestData/LogProdOPS.csv";
             using var reader = new StreamReader(filepath);
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             var records = csv.GetRecords<LogProd>().ToList();
