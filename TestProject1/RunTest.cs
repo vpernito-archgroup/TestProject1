@@ -14,7 +14,7 @@ namespace ART.Test
     {
         public static IEnumerable ReadCSV()
         {
-            var filepath = "../../../../TestData/LogProdOPS.csv";
+            var filepath = "../../../../TestData/LogProdCLM.csv";
             using var reader = new StreamReader(filepath);
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             var records = csv.GetRecords<LogProd>().ToList();
@@ -73,47 +73,47 @@ namespace ART.Test
 
             if(wstream == "CAS_Claims Administration")
             {
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 if(trans != "")
                     await LogActivity.selectTransactionAsync(trans);
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 if (stg != "")
                     await LogActivity.selectStageAsync(stg);
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 if (qty != "")
                 await LogActivity.inputQuantityAsync(qty);
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 await LogActivity.optionWithinSLAAsync(sla);
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 await LogActivity.optionIsOvertimeAsync(ot);
             }
             else if (wstream == "COS_Claims Operations" || wstream == "CRC_Claims Reporting and Controls" || wstream == "CBS_Claims Bordereaux Services")
             {
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 if (desc != "")
                     await LogActivity.selectDescriptionAsync(desc);
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 if (type != "")
                     await LogActivity.selectTypeAsync(type);
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 if (stat != "")
                     await LogActivity.selectStatusAsync(stat);
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 await LogActivity.inputQuantityAsync(qty);
             }
             else
             {
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 if (trans != "")
                     await LogActivity.selectActivityAsync(trans);
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 if (stg != "")
                     await LogActivity.selectStageAsync(stg);
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 if (qty != "")
                     await LogActivity.inputQuantityAsync(qty);
             }
-            await Task.Delay(1000);
+            await Task.Delay(2000);
             await LogActivity.inputNotesAsync();
             await LogActivity.clickSubmitAsync();
             await Task.Delay(3000);
