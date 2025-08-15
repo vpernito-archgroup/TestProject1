@@ -133,6 +133,8 @@ namespace ART.Test
 
             await LoginART(data.Username, data.Password);
 
+            await Timesheet.AssertTimesheetsAsync();
+
             await Task.Delay(1000);
             int recCount = await Timesheet.checkExistingTimesheetAsync(rec);
 

@@ -15,6 +15,7 @@ namespace ART.Pages
 
         //Assert Objects
         private ILocator headerART => Page.Locator("h6:has-text(\"Activity Resource Tracker\")");
+        private ILocator headerTimesheets => Page.Locator("h6:has-text(\"Timesheets\")");
 
 
         public LoginPage(IPage page) => Page = page;
@@ -35,6 +36,6 @@ namespace ART.Pages
             if(!isVisible)
                 throw new Exception("Login Failed!");
         }
-       
+
     }
 }

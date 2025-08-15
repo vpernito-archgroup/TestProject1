@@ -9,6 +9,7 @@ namespace ART.Pages
         private readonly IPage Page;
 
         //Page Objects
+        private ILocator menuTimesheet => Page.Locator("a[href='/timesheet']");
         private ILocator addTimesheetButton => Page.Locator("button[class='btn btn-primary']");
         private ILocator workshiftList => Page.Locator("div[class='mud-input mud-input-text mud-input-text-with-label mud-input-adorned-end mud-input-underline mud-shrink mud-typography-subtitle1 mud-select-input']");
         private ILocator workshiftStart => Page.Locator("label.mud-input-label.mud-input-label-animated.mud-input-label-text.mud-input-label-inputcontrol:has-text(\"Start Date\")");
@@ -27,10 +28,17 @@ namespace ART.Pages
         //Assert Objects
         private ILocator headerAddShift => Page.Locator("h6:has-text(\"Add Shift\")");
         private ILocator textClockIn => Page.Locator("h4:has-text(\"Are you sure you want to Clock In?\")");
+        private ILocator headerTimesheets => Page.Locator("h6:has-text(\"Timesheets\")");
 
 
         public Timesheet(IPage page) => Page = page;
-   
+
+        public async Task AssertTimesheetsAsync()
+        {
+            bool isVisible = await headerTimesheets.IsVisibleAsync();
+            if (!isVisible)
+                await menuTimesheet.ClickAsync();
+        }
 
         public async Task clickAddTimesheetAsync()
         {
